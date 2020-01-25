@@ -48,18 +48,23 @@ def checkResult(currentplayer):
     return winXO
 # Esta função é responsável por processar as jogadas:
 def round(currentplayer):
-    print ("Jogada:")
+    
     if currentplayer == False:
         mark = "O"
-        c = input("jogada:") 
+        c = input("jogada de O:") 
+        while True:
+            if c != "A1" and c != "A2" and c != "A3" and c != "B1" and c != "B2" and c != "B3" and c != "C1" and c != "C2" and c != "C3":
+                c = input("jogada de O(Digite um Valor válido):")
+            else:
+                break 
     elif currentplayer == True:
         mark = "X"   
-        c = input("jogada:") 
-        #while True:
-        #   if c != "A1" or c != "A2" or c != "A3" or c != "B1" or c != "B2" or c != "B3" or c != "C1" or c != "C2" or c != "C3":
-         #       c = input("jogada(Digite um Valor válido):")
-          #  else:
-           #     break #
+        c = input("jogada de X:") 
+        while True:
+            if c != "A1" and c != "A2" and c != "A3" and c != "B1" and c != "B2" and c != "B3" and c != "C1" and c != "C2" and c != "C3":
+                c = input("jogada de X(Digite um Valor válido):")
+            else:
+                break 
             
     for i in range(0, 3):
         for j in range(0, 3):
