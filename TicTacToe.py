@@ -51,6 +51,7 @@ def round(currentplayer):
     print ("Jogada:")
     if currentplayer == False:
         mark = "O"
+        c = input("jogada:") 
     elif currentplayer == True:
         mark = "X"   
         c = input("jogada:") 
