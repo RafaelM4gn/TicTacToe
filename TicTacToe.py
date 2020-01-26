@@ -1,5 +1,6 @@
-#import pandas as pd
-#import Scoreboard
+import pandas as pd
+import csv
+import Scoreboard
 # Inicializando variáveis:
 board = [ ["A1", "B1", "C1"], ["A2", "B2", "C2"], ["A3", "B3", "C3"] ]
 current_player = True
@@ -77,7 +78,9 @@ def round(currentplayer):
     return currentplayer
 # Execução do jogo:
 pX = input("Nome do jogador X:")
+Scoreboard.newPlayer(pX)
 pO = input("Nome do jogador O:")
+Scoreboard.newPlayer(pO)
 for p in range(0,9):
     displayBoard()
     theWinner = checkResult(current_player)  
@@ -85,12 +88,11 @@ for p in range(0,9):
         current_player = round(current_player)
     elif theWinner == 1:
         print("O jogador X venceu!")
+        print(Scoreboard.addWins(pX))
         break
     elif theWinner == 2:
         print("O jogador O venceu!")
+        print(Scoreboard.addWins(pO))
         break
     if theWinner == 0 and p == 8:
         print("Deu velha!")
-if current_player == False:
-    print("Congratulations!!!")
-    displayBoard()
