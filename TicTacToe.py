@@ -1,3 +1,5 @@
+#import pandas as pd
+#import Scoreboard
 # Inicializando variáveis:
 board = [ ["A1", "B1", "C1"], ["A2", "B2", "C2"], ["A3", "B3", "C3"] ]
 current_player = True
@@ -74,6 +76,8 @@ def round(currentplayer):
     currentplayer = not currentplayer
     return currentplayer
 # Execução do jogo:
+pX = input("Nome do jogador X:")
+pO = input("Nome do jogador O:")
 for p in range(0,9):
     displayBoard()
     theWinner = checkResult(current_player)  
