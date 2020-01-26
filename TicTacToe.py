@@ -1,5 +1,4 @@
 # Inicializando variáveis:
-import pandas as pd
 board = [ ["A1", "B1", "C1"], ["A2", "B2", "C2"], ["A3", "B3", "C3"] ]
 current_player = True
 theWinner = 0
@@ -51,7 +50,7 @@ def checkResult(currentplayer):
 def round(currentplayer):
     
     if currentplayer == False:
-        mark = "O "
+        mark = "O"
         c = input("jogada de O:") 
         while True:
             if c != "A1" and c != "A2" and c != "A3" and c != "B1" and c != "B2" and c != "B3" and c != "C1" and c != "C2" and c != "C3":
@@ -59,7 +58,7 @@ def round(currentplayer):
             else:
                 break 
     elif currentplayer == True:
-        mark = "X "   
+        mark = "X"   
         c = input("jogada de X:") 
         while True:
             if c != "A1" and c != "A2" and c != "A3" and c != "B1" and c != "B2" and c != "B3" and c != "C1" and c != "C2" and c != "C3":
@@ -82,8 +81,10 @@ for p in range(0,9):
         current_player = round(current_player)
     elif theWinner == 1:
         print("O jogador X venceu!")
+        break
     elif theWinner == 2:
         print("O jogador O venceu!")
+        break
     if theWinner == 0 and p == 8:
         print("Deu velha!")
 if current_player == False:
