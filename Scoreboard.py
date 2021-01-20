@@ -2,12 +2,12 @@ import pandas as pd
 import csv
 
 
-#Esta função é responsável por inicializar o DataFrame
+#This function initializes the DataFrame
 def resetDf():
     df = pd.read_csv("./Scoreboard.csv")
     df.index += 1
     return df
-#Esta funçao é responsável por adicionar um novo jogador caso ele nao exista
+#This function adds a new player if it does not exist
 def newPlayer(player):
     create = True
     with open('Scoreboard.csv', newline='', encoding='utf-8') as f:
@@ -24,7 +24,7 @@ def newPlayer(player):
                 spamwriter.writerow([player, '0'])
     resetDf()
     return resetDf()
-#Esta funçao é responsável por aumentar as vitorias de um jogador
+#This function increases a player's wins
 def addWins(name):
     df = resetDf()
     df.loc[df["name"]== name , "wins"] +=  1
