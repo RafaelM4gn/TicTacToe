@@ -1,2 +1,2 @@
 # TicTacToe
-Game TicTacToe in Python
+Game TicTacToe with ScoreBoard in Python
