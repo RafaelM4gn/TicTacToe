@@ -31,44 +31,49 @@ def checkResult(currentplayer):
                 # print("o jogador X venceu")
             if verif == "O":
                 winXO = 2
-                # print("o jogador O venceu")    
+                # print("o jogador O venceu")
         y = 2
-        w = 0       
+        w = 0
         if board[z][0] == verif  and board[z][1] == verif and board[z][2] == verif:
             if verif == "X":
                 winXO = 1
                 # print("o jogador X venceu")
             if verif == "O":
                 winXO = 2
-                # print("o jogador O venceu") 
+                # print("o jogador O venceu")
         if board[0][z] == verif  and board[1][z] == verif and board[2][z] == verif:
             if verif == "X":
                 winXO = 1
                 # print("o jogador X venceu")
             if verif == "O":
                 winXO = 2
-                # print("o jogador O venceu") 
+                # print("o jogador O venceu")
     return winXO
 # Esta função é responsável por processar as jogadas:
 def round(currentplayer):
-    
+
     if currentplayer == False:
         mark = "O"
-        c = input("jogada de O:") 
+        c = str(input("jogada de O:"))
         while True:
-            if c != "A1" and c != "A2" and c != "A3" and c != "B1" and c != "B2" and c != "B3" and c != "C1" and c != "C2" and c != "C3":
-                c = input("jogada de O(Digite um Valor válido):")
+            if (c != "A1" and c != "A2" and c != "A3" and c != "B1" and c != "B2" and c != "B3" and c != "C1" and c != "C2" and c != "C3"):
+                c = str(input("jogada de O(Digite um Valor válido):"))
+
+            elif sum(x.count(c) for x in board) == 0:
+                c = str(input("jogada de O(Digite um Valor válido):"))
             else:
-                break 
+                break
     elif currentplayer == True:
-        mark = "X"   
-        c = input("jogada de X:") 
+        mark = "X"
+        c = str(input("jogada de X:"))
         while True:
-            if c != "A1" and c != "A2" and c != "A3" and c != "B1" and c != "B2" and c != "B3" and c != "C1" and c != "C2" and c != "C3":
-                c = input("jogada de X(Digite um Valor válido):")
+            if (c != "A1" and c != "A2" and c != "A3" and c != "B1" and c != "B2" and c != "B3" and c != "C1" and c != "C2" and c != "C3"):
+                c = str(input("jogada de X(Digite um Valor válido):"))
+            elif sum(x.count(c) for x in board) == 0:
+                c = str(input("jogada de X(Digite um Valor válido):"))
             else:
-                break 
-            
+                break
+
     for i in range(0, 3):
         for j in range(0, 3):
             #if board[i][j] != "X" or board[i][j] != "O":
@@ -78,21 +83,30 @@ def round(currentplayer):
     return currentplayer
 # Execução do jogo:
 pX = input("Nome do jogador X:")
-Scoreboard.newPlayer(pX)
+Scoreboard.newPlayer(pX.upper())
 pO = input("Nome do jogador O:")
-Scoreboard.newPlayer(pO)
+Scoreboard.newPlayer(pO.upper())
+displayBoard()
 for p in range(0,9):
-    displayBoard()
-    theWinner = checkResult(current_player)  
     if theWinner == 0:
         current_player = round(current_player)
-    elif theWinner == 1:
+        theWinner = checkResult(current_player)
+    if theWinner == 1:
+        displayBoard()
         print("O jogador X venceu!")
-        print(Scoreboard.addWins(pX))
+        fdf = Scoreboard.addWins(pX).sort_values(by=["wins"], ascending = False)
+        fdf.reset_index(drop=True, inplace=True)
+        fdf.index += 1
+        print(fdf)
         break
-    elif theWinner == 2:
+    if theWinner == 2:
+        displayBoard()
         print("O jogador O venceu!")
-        print(Scoreboard.addWins(pO))
+        fdf = Scoreboard.addWins(pO).sort_values(by=["wins"], ascending = False)
+        fdf.reset_index(drop=True, inplace=True)
+        fdf.index += 1
+        print(fdf)
         break
     if theWinner == 0 and p == 8:
         print("Deu velha!")
+    displayBoard()
